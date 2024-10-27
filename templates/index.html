@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Emotion Detection</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .result { margin-top: 20px; }
+        .chart { margin-top: 20px; }
+        button {
+    height: 50%;
+    width: 100px;
+    background-color: rgb(172, 234, 255);
+    color: black;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: rgb(135, 206, 250); /* Light Sky Blue on hover */
+}
+    </style>
+</head>
+<body>
+    <h1>Text Emotion Detection</h1>
+    <form method="POST" action="/">
+        <textarea name="raw_text" rows="6" style="width: 100%;" placeholder="Type Here"></textarea><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if raw_text %}
+    <div class="result">
+        <h2>Original Text</h2>
+        <p>{{ raw_text }}</p>
+
+        <h2>Prediction</h2>
+        <p>{{ prediction }}: {{ emoji_icon }}</p>
+        <p>Confidence: {{ confidence }}</p>
+    </div>
+
+    <div class="chart">
+        <h2>Prediction Probability</h2>
+        {{ chart_html | safe }}
+    </div>
+    {% endif %}
+</body>
+</html>
